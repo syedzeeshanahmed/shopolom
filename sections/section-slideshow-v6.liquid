@@ -1,0 +1,203 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-slideshow-v6" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %} {% if section.settings.sections_layout == "dark" %}background: {{section.settings.sections_bg_color}};{% endif %}">
+  <div class="section-slideshow-v6">
+    <div class="slick-side-h6">       
+      {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+      {% if block.type == "slideshow" %}
+      <div class="item-slide ">
+        <div class="img-slide">
+          <div class="d-none d-md-block">
+            <a href="{{block.settings.url_btn}}" class="d-block"> 
+              <img data-src="{% if block.settings.img_slide != blank %} {{block.settings.img_slide | img_url : 'master'}} {% else %}  //via.placeholder.com/1920x900 {% endif %}" class="lazyload img_desktop img-fluid w-100" alt="_img_slide_">
+            </a>
+          </div>
+          <div class="d-block d-md-none">
+            <a href="{{block.settings.url_btn}}">
+              {% if block.settings.img_slide_mb != blank %}
+              <img data-src="{{block.settings.img_slide_mb | img_url: 'master'}}" class="lazyload img-fluid w-100" alt="_img_slide">
+              {% else %}
+              <img data-src="{{block.settings.img_slide | img_url : 'master'}}" class="lazyload img_desktop img-fluid w-100" alt="_img_slide">
+              {% endif %}
+            </a>
+          </div>
+        </div>
+        <div class="slide-content">
+
+          {% if block.settings.sub_title1 != blank %}
+          <div class="sub-title1 ">
+            <p class="animated" style="color: {{block.settings.color_sub_title1}}">{{block.settings.sub_title1}}</p>
+          </div>
+          {% endif %}
+          {%  if block.settings.title_slide != blank %}
+          <div class="title-slide">
+            <h3 class="animated" style="color: {{block.settings.color_title}}">{{block.settings.title_slide}}</h3>
+          </div>
+
+          {% endif %}
+
+          {% if block.settings.btn_slide != blank %}
+          <div class="box-btn">
+            <a href="{{block.settings.url_btn}}" class="btn-slide animated btn-slide-{{ block.id }}">{{block.settings.btn_slide}}</a>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<style>
+  {% for block in section.blocks %}
+  {% if block.type == 'slideshow' %}
+  .section-slideshow-v6 .slick-side-h6 .item-slide .box-btn .btn-slide-{{ block.id }} {
+    color: {{block.settings.color_btn}};
+    background: {{block.settings.bg_btn}};
+    transition: all 0.5s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+    position: relative;
+  } 
+  .section-slideshow-v6 .slick-side-h6 .item-slide  .box-btn .btn-slide-{{ block.id }}:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    mix-blend-mode: lighten;
+    background: {{block.settings.bg_btn_hover}};
+    transition: all 0.5s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+  }
+  .section-slideshow-v6 .slick-side-h6 .item-slide  .box-btn .btn-slide-{{ block.id }}:hover {
+    background: transparent;
+  }
+  .section-slideshow-v6 .slick-side-h6 .item-slide  .box-btn .btn-slide-{{ block.id }}:hover:after {
+    width: 100%;
+    height: 100%;
+  }
+  {% endif %}
+  {% endfor %}
+</style>
+
+{% schema %}
+{
+  "name": "SLIDESHOW V6",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slideshow",
+      "name": "slideshow",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img_slide",
+          "label": "Image slideshow for destop",
+          "info": "1920 x 900px recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "img_slide_mb",
+          "label": "Image slideshow for mobile",
+          "info": "500 x 600px recommended"
+        },
+        {
+          "type": "text",
+          "id": "sub_title1",
+          "label": "Sub Title 1",
+          "default": "Knics Furniture 2022"
+        },
+        {
+          "type": "color",
+          "id": "color_sub_title1",
+          "label": "Color",
+          "default": "#000"
+        },
+        {
+          "type": "text",
+          "id": "title_slide",
+          "label": "Title",
+          "default": "New Collection"
+        },
+        {
+          "type": "color",
+          "id": "color_title",
+          "label": "Color",
+          "default": "#000"
+        },
+        {
+          "type": "text",
+          "id": "btn_slide",
+          "label": "Button",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "color",
+          "id": "color_btn",
+          "label": "Color Button",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn",
+          "label": "Background Color",
+          "default": "#fe7250"
+        },
+        {
+          "type": "color",
+          "id": "bg_btn_hover",
+          "label": "Background Color Hover",
+          "default": "#fe7250"
+        },
+        {
+          "type": "url",
+          "id": "url_btn",
+          "label": "URL Button",
+          "default": "/collections/all"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SLIDESHOW V6",
+      "category": "HOME",
+      "blocks": [
+        {
+          "type": "slideshow",
+          "settings": {
+            "sub_title1": "Knics Furniture 2022",
+            "title_slide": "New Collection",
+            "btn_slide": "SHOP NOW"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

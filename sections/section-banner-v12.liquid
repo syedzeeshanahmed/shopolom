@@ -1,0 +1,218 @@
+<div data-section-id="{{ section.id }}" data-section-type="section-banner-v12" style="{% if section.settings.margin_top != blank %}margin-top: {{section.settings.margin_top}}px;{%endif%} {% if section.settings.margin_bottom != blank %}margin-bottom: {{section.settings.margin_bottom}}px;{% endif %}">
+  <div class="section-banner-v12{% if section.settings.ena_margin_top %}  mt-all {% endif %}"> 
+    <div class="relative banner-v12 {% if section.settings.ena_container %}container container-v2{% endif %} " style="background: {{section.settings.bg_section}}">  
+      <div class="container container-v2">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-6">
+            <div class="box-img">
+              <a href="{{section.settings.url_banner1}}">
+                <img data-src=" {% if section.settings.img_banner != blank %}{{section.settings.img_banner | img_url:'master'}} {% else %}//via.placeholder.com/720x392{% endif %}" class="lazyload w-100 img-fluid" alt="_img">
+              </a>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-6">
+            <div class="content-banner {% if settings.enable_rtl_mode %}text-right {% else %}{% if section.settings.select_pos =='left' %} text-left {% elsif section.settings.select_pos == 'center'%}text-center {% elsif section.settings.select_pos == 'right'%} text-right {% endif %}{% endif %}">
+              
+              {% if section.settings.sub_banner != blank %}
+              <p class="sub-banner" style="color: {{section.settings.color_sub_banner}}">{{section.settings.sub_banner}}</p>
+              {% endif %}
+              {% if section.settings.title_banner != blank %}
+              <h3 class="title-banner" style="color: {{section.settings.color_title}}">{{section.settings.title_banner}}</h3>
+              {% endif %}
+              {% if section.settings.content_banner != blank %}
+              <p class="content" style="color: {{section.settings.color_content_banner}}">{{section.settings.content_banner}}</p>
+              {% endif %}
+              {% if section.settings.content_price != blank %}
+              <span class="product-price"  style="color: {{section.settings.color_content_price}}">{{section.settings.content_price}}</span>
+              {% endif %}
+              {% if section.settings.button_banner != blank %}
+              <a href="{{section.settings.url_button}}" class="button-banner button-banner-{{ section.id }}">{{section.settings.button_banner}}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-banner-v12 .banner-v12 .content-banner .button-banner-{{ section.id }} {
+    color: {{section.settings.color_btn}};
+    background: {{section.settings.bg_btn}};
+  }
+  .section-banner-v12 .banner-v12 .content-banner  .button-banner-{{ section.id }}:hover {
+    color: {{section.settings.color_btn_hover}};
+    background: {{section.settings.bg_btn_hover}};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "BANNER V12",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Space"
+    },
+    {
+      "type": "text",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "text",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "info": "Defined in pixels. Do not add the 'px' unit."
+    },
+    {
+      "type": "header",
+      "content": "Settings Banner 7"
+    },
+    {
+      "type": "checkbox",
+      "id": "ena_container",
+      "label": "Enable Container",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "ena_margin_top",
+      "label": "Enable Add Margin Top",
+      "default": true
+    },    
+	{
+      "type": "color",
+      "id": "bg_section",
+      "label": "Bacground Section",
+      "default": "#f5f5f5"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "img_banner",
+      "label": "Image",
+      "info": "690 x 475px recommended"
+    },
+    {
+      "type": "select",
+      "id": "select_pos",
+      "label": "Select Position Content",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+
+    {
+      "type": "text",
+      "id": "sub_banner",
+      "label": "Sub Banner",
+      "default": "Sale up to 0% off "
+    },
+    {
+      "type": "color",
+      "id": "color_sub_banner",
+      "label": "Color Sub Title",
+      "default": "#4B9E22"
+    },
+    {
+      "type": "text",
+      "id": "title_banner",
+      "label": "Title Banner",
+      "default": "Pineapple Oganic "
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Color Title",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "content_banner",
+      "label": "Content Banner",
+      "default": "Indoor plants don’t just look good – they can make us feel good, too. Studies have shown indoor plants...  "
+    },
+    {
+      "type": "color",
+      "id": "color_content_banner",
+      "label": "Color Contnet",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "content_price",
+      "label": " Price",
+      "default": "$815.00 "
+    },
+    {
+      "type": "color",
+      "id": "color_content_price",
+      "label": "Color Price",
+      "default": "#86ba09"
+    },
+    {
+      "type": "text",
+      "id": "button_banner",
+      "label": "Button Banner 1",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "color",
+      "id": "color_btn",
+      "label": "Color Button",
+      "default": "#F3A395"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn",
+      "label": "Background Color Button",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_hover",
+      "label": "Color Button Hover",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_btn_hover",
+      "label": "Background Color Button Hover",
+      "default": "#F3A395"
+    },
+    {
+      "type": "url",
+      "id": "url_button",
+      "label": "URL Button Banner",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BANNER V12",
+      "category": "HOME"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
